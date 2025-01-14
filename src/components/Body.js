@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+const SWIGGY_API_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
 const Body = () => {
   const [listOfResturants, setListOfResturants] = useState([]);
@@ -15,7 +17,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      `${CORS_PROXY}${SWIGGY_API_URL}`
     );
     const json = await data.json();
     setListOfResturants(
